@@ -1,0 +1,48 @@
+<div class="card">
+  <h3 class="card-header">User Profile </h3>
+  <div class="card-body">
+    <form [formGroup]="formUser" (ngSubmit)="onSubmit()" class="was-validated">
+      <div class="mb-3">
+        <label class="form-label">Fullname</label>
+        <input formControlName="fullname" type="text" class="form-control">
+        <div class="invalid-feedback" *ngIf="formUser.controls['fullname'].errors?.['required']">Fullname is required</div>      
+      </div>
+      <div class="col mb-3">
+        <label class="form-label">Date of Birth</label>
+        <input
+          type="date"
+          formControlName="dob"
+          class="form-control"
+        />
+        <div *ngIf="submitted && formUser.controls['dob'].errors" class="invalid-feedback">
+          <div *ngIf="formUser.controls['dob'].errors?.['required']">Date of Birth is required</div>
+          <div *ngIf="formUser.controls['dob'].errors?.['pattern']">
+            Date of Birth must be a valid date in the format YYYY-MM-DD
+          </div>
+        </div>
+		</div>         
+      <div class="mb-3">
+          <label class="form-label">Email Address</label>
+          <input formControlName="correo" type="email" class="form-control" placeholder="Enter email">
+          <div *ngIf="formUser.controls['correo'].dirty && formUser.controls['correo'].errors?.['required']">El campo correo no puede ser vacío</div>
+          <div class="invalid-feedback" *ngIf="formUser.controls['correo'].dirty && formUser.controls['correo'].errors?.['pattern']">El campo correo tiene un formato incorrecto</div>
+      </div>
+      <div class="mb-3">
+          <label class="form-label">Password</label>
+          <input formControlName="password" type="password" class="form-control">
+          <div class="valido" *ngIf="formUser.controls['password'].dirty && formUser.controls['password'].valid">Campo correcto</div>
+          <div class="invalid-feedback" *ngIf="formUser.controls['password'].dirty && formUser.controls['password'].errors?.['required']">El campo contraseña no puede ser vacío</div>
+          <div class="invalid-feedback" *ngIf="formUser.controls['password'].dirty && formUser.controls['password'].errors?.['minlength']">El campo contrasenña debe tener al menos 6 caracteres</div>
+      </div>
+      <div class="mb-3 form-check">
+          <input formControlName="recordarCredenciales" type="checkbox" class="form-check-input">
+          <label class="form-check-label" for="exampleCheck1">Accept Terms & Conditions</label>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="reset" class="btn btn-secondary">Reset</button>
+    </form>
+  </div>
+
+</div>
+
+
