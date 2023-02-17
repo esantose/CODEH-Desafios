@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { PromiseComponent } from './components/promise/promise.component';
@@ -9,7 +10,11 @@ import { dbData } from './dbData';
 
 @NgModule({
   declarations: [AppComponent, PromiseComponent, ObservableComponent],
-  imports: [BrowserModule, InMemoryWebApiModule.forRoot(dbData)],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    InMemoryWebApiModule.forRoot(dbData),
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
